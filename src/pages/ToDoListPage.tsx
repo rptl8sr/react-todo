@@ -1,4 +1,3 @@
-import { Header } from '../components/Header';
 import { Form } from '../components/Form';
 import { ToDoList } from '../components/ToDoList';
 import { ToDo } from '../models';
@@ -47,7 +46,6 @@ export const ToDoListPage = () => {
 
     return (
         <>
-            <Header />
             <Form createNewTODO={createNewTODO}/>
             <ToDoList todos={todos} updateToDo={updateTodo} deleteToDo={deleteTodo}/>
             <ToastContainer

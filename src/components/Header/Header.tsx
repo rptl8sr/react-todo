@@ -1,5 +1,5 @@
 import classes from './Header.module.scss';
-import { NavLink,  Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const Header = () => {
   const getActiveClass = ({ isActive}: { isActive: boolean }): string => {

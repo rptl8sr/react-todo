@@ -3,9 +3,6 @@ import { ToDo } from '../models';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 
-interface ComponentProps {
-  todos: ToDo[]
-}
 
 export const ViewListPage = () => {
   const todoList = useSelector((state: RootState) => state.todoList.todos);

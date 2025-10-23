@@ -5,8 +5,6 @@ import { ViewListPage } from './pages/ViewListPage';
 import { ViewListItem } from './pages/ViewListItem';
 import { ToDoListPage } from './pages/ToDoListPage';
 import React from 'react';
-import { ToDo } from './models';
-
 
 
 export const router = createBrowserRouter([

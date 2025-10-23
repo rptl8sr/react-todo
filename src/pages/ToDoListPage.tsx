@@ -1,32 +1,22 @@
 import { Form } from '../components/Form';
 import { ToDoList } from '../components/ToDoList';
 import { ToDo } from '../models';
-import { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../store';
+import { createAction, deleteAction, updateAction } from '../feature/todoList';
 
 export const ToDoListPage = () => {
-  const [todos, setTodos] = useState<ToDo[]>([]);
+  const todoList = useSelector((state: RootState) => state.todoList.todos);
+  const dispatch = useDispatch();
 
   const createNewTODO = (text: string) => {
-    const newTodo: ToDo = {
-      id: todos.length,
-      text: text,
-      isDone: false,
-    }
-
-    setTodos([...todos, newTodo]);
+    dispatch(createAction(text))
     toast.success(`Задача "${text}" добавлена!`);
   }
 
   const updateTodo = (item: ToDo) => {
-    const newTodos = todos.map((todo) => {
-      if (todo.id === item.id) {
-        todo.isDone = !todo.isDone
-      }
-      return todo
-    })
-
-    setTodos(newTodos);
+    dispatch(updateAction(item))
 
     if (item.isDone) {
       toast.info(`Задача "${item.text}" отмечена как невыполненная`);
@@ -37,17 +27,14 @@ export const ToDoListPage = () => {
   }
 
   const deleteTodo = (item: ToDo) => {
-    const newTodos = todos.filter(((todo) => todo.id !== item.id))
-
-    setTodos(newTodos);
+    dispatch(deleteAction(item))
     toast.error(`Задача "${item.text}" удалена`);
-
   }
 
     return (
         <>
             <Form createNewTODO={createNewTODO}/>
-            <ToDoList todos={todos} updateToDo={updateTodo} deleteToDo={deleteTodo}/>
+            <ToDoList todos={todoList} updateToDo={updateTodo} deleteToDo={deleteTodo}/>
             <ToastContainer
               position="bottom-right"
               autoClose={3000}

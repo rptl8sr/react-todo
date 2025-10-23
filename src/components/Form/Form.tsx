@@ -4,7 +4,8 @@ import React from 'react';
 export const Form = (props: {createNewTODO: Function}) => {
   const [text, setText] = React.useState('');
 
-  const formSubmit = () => {
+  const formSubmit = (event: React.SyntheticEvent) => {
+    event.preventDefault();
     if (text) {
       props.createNewTODO(text);
       setText('');

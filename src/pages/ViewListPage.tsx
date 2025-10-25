@@ -11,8 +11,8 @@ export const ViewListPage = () => {
     <div className="container">
       {todoList.length > 0 ? <h1>Задачи</h1> : <h1>Задач нет</h1>}
       {
-        todoList.map((todo: ToDo, index: number) => {
-          return (<ListItem todo={todo} key={index}/>)
+        todoList.map((todo: ToDo) => {
+          return (<ListItem todo={todo} key={todo.id}/>)
       })}
     </div>
   )

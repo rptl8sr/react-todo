@@ -16,6 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .link {
@@ -26,4 +27,73 @@
 
 .active {
   color: #ffffff33;
+}
+
+.toggleButton {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  button {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    outline: none;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 24px;
+      height: 24px;
+      background: white;
+      border-radius: 50%;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    &::after {
+      content: '🌙';
+      position: absolute;
+      top: 50%;
+      left: 8px;
+      transform: translateY(-50%);
+      font-size: 12px;
+      transition: all 0.3s ease;
+      opacity: 0.8;
+    }
+
+    &.light {
+      background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+
+      &::before {
+        transform: translateX(30px);
+        background: #fff;
+      }
+
+      &::after {
+        content: '☀️';
+        left: auto;
+        right: 8px;
+      }
+    }
+  }
 }
